@@ -1,14 +1,7 @@
 <?php
-/**
- * Student
- *
- * @author        Takanori Kobashi kobashi@akane.waseda.jp
- * @since         1.0.0
- * @version       1.0.0
- * @copyright
- */
-class Student extends AppModel
-{
+
+
+class Student extends AppModel {
     public $name = 'Student';
 
     public $validate = array(
@@ -55,4 +48,5 @@ class Student extends AppModel
             ),
         ),
     );
+
 }

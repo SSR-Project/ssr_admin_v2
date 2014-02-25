@@ -1,14 +1,7 @@
 <?php
-/**
- * GraduationCourse
- *
- * @author        Takanori Kobashi kobashi@akane.waseda.jp
- * @since         1.0.0
- * @version       1.0.0
- * @copyright
- */
-class GraduationCourse extends AppModel
-{
+
+
+class GraduationCourse extends AppModel {
     public $name = 'GraduationCourse';
 
     public $validate = array(
@@ -31,4 +24,6 @@ class GraduationCourse extends AppModel
             ),
         ),
     );
+
+
 }

@@ -1,12 +1,6 @@
 <?php
-/**
- * User
- *
- * @author        Takanori Kobashi kobashi@akane.waseda.jp
- * @since         1.0.0
- * @version       1.0.0
- * @copyright
- */
+
+
 class User extends AppModel
 {
     public $name = 'User';
@@ -50,12 +44,7 @@ class User extends AppModel
         ),
     );
 
-    /**
-     * getStudentUser
-     * @param: $user_id
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
+
     public function getStudentUser($user_id)
     {
         $result = $this->find('first', array(
@@ -67,12 +56,6 @@ class User extends AppModel
         return $result;
     }
 
-    /**
-     * getStudentUsers
-     * @param:
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getStudentUsers()
     {
         $result = $this->find('all', array(
@@ -85,12 +68,6 @@ class User extends AppModel
         return $result;
     }
 
-    /**
-     * getStudentUsersByConditions
-     * @param: $condtions
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getStudentUsersByConditions($condtions)
     {
         $result = $this->find('all', array(
@@ -99,12 +76,6 @@ class User extends AppModel
         return $result;
     }
 
-    /**
-     * getCompletionUser
-     * @param: $user_id
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getCompletionUser($user_id)
     {
         $result = $this->find('first', array(
@@ -117,12 +88,6 @@ class User extends AppModel
         return $result;
     }
 
-    /**
-     * getCompletionUsers
-     * @param:
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getCompletionUsers()
     {
         $result = $this->find('all', array(
@@ -136,12 +101,6 @@ class User extends AppModel
         return $result;
     }
 
-    /**
-     * getCompletionUsersByConditions
-     * @param: $condtions
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getCompletionUsersByConditions($condtions)
     {
         $result = $this->find('all', array(

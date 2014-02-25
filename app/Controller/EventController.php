@@ -12,7 +12,7 @@ class EventController extends AppController {
 
     public $name = 'Event';
     public $uses = array('Event');
-    public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form',);
     public $layout = 'base';
 
     /**

@@ -12,7 +12,9 @@ class UserController extends AppController
 {
 
     public $name = 'User';
-    public $uses = array('Administrators');
+    public $uses = array(
+        'Administrators'
+    );
     public $helpers = array('Html', 'Form',);
     public $layout = 'base';
 

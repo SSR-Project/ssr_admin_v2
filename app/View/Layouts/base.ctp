@@ -69,6 +69,11 @@
             <ul class="dropdown-menu">
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="/<?php echo $base_dir;?>/log" class="dropdown-toggle" >
+              アクセスログ
+            </a>
+          </li>
           <li>
             <a href="/<?php echo $base_dir;?>/logout">Logout</a>
           </li>

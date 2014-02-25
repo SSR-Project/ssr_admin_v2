@@ -12,7 +12,7 @@ class AppController extends Controller
 {
 
    public $components = array(
-        'DebugKit.Toolbar',
+        // 'DebugKit.Toolbar',
         'Auth' => array(
             'loginAction' => array(
                 'controller' => '/',

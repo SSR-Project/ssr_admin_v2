@@ -11,7 +11,12 @@ App::uses('AppController', 'Controller');
 class StudentController extends AppController
 {
     public $name = 'Student';
-    public $uses = array('User','Student','UserConfidential');
+    public $uses = array(
+        'User',
+        'Student',
+        'UserConfidential',
+        'Log'
+    );
     public $helpers = array('Html', 'Form',);
     public $layout = 'base';
 
@@ -165,6 +170,21 @@ class StudentController extends AppController
         $this->Student->commit();
         // トランザクション処理終わり
 
+        // トランザクション処理始め
+        $data = array();
+        $data['Log']['user_id']          =  $this->Auth->user('id');
+        $data['Log']['method_type']      =  INFOCHANGE;
+        $data['Log']['application_type'] =  ADMIN;
+        $this->Log->begin();
+
+        if (!$this->Log->save($data)) {
+            $this->Log->rollback();
+            throw new BadRequestException();
+        }
+
+        $this->Log->commit();
+        // トランザクション処理終わり
+
         $this->Session->setFlash('You successfully edit account.', 'default', array('class' => 'alert alert-success'));
         $this->redirect(array('controller' => 'Student', 'action' => 'show/'.$user_id));
     }
@@ -198,6 +218,21 @@ class StudentController extends AppController
         }
 
         $this->UserConfidential->commit();
+
+        // トランザクション処理始め
+        $data = array();
+        $data['Log']['user_id']          =  $this->Auth->user('id');
+        $data['Log']['method_type']      =  INFODELETE;
+        $data['Log']['application_type'] =  ADMIN;
+        $this->Log->begin();
+
+        if (!$this->Log->save($data)) {
+            $this->Log->rollback();
+            throw new BadRequestException();
+        }
+
+        $this->Log->commit();
+        // トランザクション処理終わり
 
         $this->Session->setFlash('You successfully delete account.', 'default', array('class' => 'alert alert-success'));
         $this->redirect(array('controller' => 'Student', 'action' => 'index'));

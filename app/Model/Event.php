@@ -1,14 +1,7 @@
 <?php
-/**
- * Completion
- *
- * @author        Takanori Kobashi kobashi@akane.waseda.jp
- * @since         1.0.0
- * @version       1.0.0
- * @copyright
- */
-class Event extends AppModel
-{
+
+
+class Event extends AppModel {
     public $name = 'Event';
     public $hasMany = array('EventsUser');
     public $validate = array(
@@ -32,12 +25,6 @@ class Event extends AppModel
         ),
     );
 
-    /**
-     * getEvent
-     * @param: $event_id
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getEvent($event_id)
     {
         $result = $this->find('first', array(
@@ -48,12 +35,6 @@ class Event extends AppModel
         return $result;
     }
 
-    /**
-     * getEvents
-     * @param:
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getEvents()
     {
         $result = $this->find('all', array(
@@ -64,12 +45,6 @@ class Event extends AppModel
         return $result;
     }
 
-    /**
-     * getEventUsers
-     * @param: $event_id
-     * @author: T.Kobashi
-     * @since: 1.0.0
-     */
     public function getEventUsers($event_id)
     {
         $result = $this->find('first', array(
@@ -80,4 +55,6 @@ class Event extends AppModel
         ));
         return $result['EventsUser'];
     }
+
+
 }

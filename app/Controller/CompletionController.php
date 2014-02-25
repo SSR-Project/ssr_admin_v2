@@ -11,7 +11,14 @@ App::uses('AppController', 'Controller');
 class CompletionController extends AppController {
 
     public $name = 'Completion';
-    public $uses = array('User','Student','Completion','GraduationCourse','UserConfidential','Certification');
+    public $uses = array(
+        'User',
+        'Student',
+        'Completion',
+        'GraduationCourse',
+        'UserConfidential',
+        'Certification'
+    );
     public $helpers = array('Html', 'Form',);
     public $layout = 'base';
 

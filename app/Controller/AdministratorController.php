@@ -12,7 +12,7 @@ class AdministratorController extends AppController
 {
 
     public $name = 'Administrator';
-    public $uses = array('Administrator');
+    public $uses = array('Administrator','Log');
     public $helpers = array('Html', 'Form',);
     public $layout = 'login';
 
@@ -36,6 +36,7 @@ class AdministratorController extends AppController
      */
     public function login()
     {
+
         //既にログイン済みならリダイレクト先へ飛ばす
         if ($this->me['is_login']) {
             $this->redirect($this->Auth->redirect());
@@ -44,10 +45,29 @@ class AdministratorController extends AppController
             if (!empty($this->request->data)) {
                 if ($this->Auth->login()) {
 
+                    // トランザクション処理始め
+                    $data = array();
+                    $data['Log']['user_id']          =  $this->Auth->user('id');
+                    $data['Log']['method_type']      =  LOGIN;
+                    $data['Log']['application_type'] =  ADMIN;
+                    $this->Log->begin();
+
+                    if (!$this->Log->save($data)) {
+                        $this->Log->rollback();
+                        throw new BadRequestException();
+                    }
+
+                    $this->Log->commit();
+                    // トランザクション処理終わり
+
+                    $this->Session->delete('LoginCount');
+
                     $this->redirect($this->Auth->redirect());
                 } else {
                     if (isset($this->request->data['Administrator']['email']) && isset($this->request->data['Administrator']['password'])) {
                         $this->Administrator->invalidate('login', 'メールアドレスとパスワードの組み合わせが間違っています。');
+                        $loginCount = $this->Session->read('LoginCount');
+                        $this->Session->write('LoginCount', $loginCount + 1);
                     }
                 }
             }
